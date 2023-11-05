@@ -3,13 +3,14 @@
 
 #include <string>
 #include <vector>
+#include "CipherMode.hpp"
 
 struct ProgramSettings{ bool helpRequested;
                         bool versionRequested;
                         std::string inputFile; 
                         std::string outputFile;
                         std::string cipherKey; 
-                        bool encrypt;
+                        CipherMode mode;
 
 };
 

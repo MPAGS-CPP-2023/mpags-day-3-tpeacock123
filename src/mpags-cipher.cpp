@@ -1,7 +1,7 @@
-#include "RunCaesarCipher.hpp"
 #include "TransformChar.hpp"
 #include "ProcessCommandLine.hpp"
 #include "CaesarCipher.hpp"
+#include "CipherMode.hpp"
 
 #include <cctype>
 #include <fstream>
@@ -16,7 +16,7 @@ int main(int argc, char* argv[])
 
     // Options that might be set by the command-line arguments
     
-    ProgramSettings CLA {false, false, "","","",true};
+    ProgramSettings CLA {false, false, "","","",CipherMode::encrypt};
 
 
     // Process command line arguments
@@ -87,14 +87,12 @@ int main(int argc, char* argv[])
             inputText += transformChar(inputChar);
         }
     }
-    std::string key = CLA.cipherKey;
+    std::string key{CLA.cipherKey};
     CaesarCipher cKey {key};
-    
-    std::size_t caesarKey{cKey.key_};
-    std::cout << cKey.key_;
+    std::string outputText{cKey.runCaesarCipher(inputText,CLA.mode)};
 
     // Run the Caesar cipher (using the specified key and encrypt/decrypt flag) on the input text
-    std::string outputText{runCaesarCipher(inputText, caesarKey, CLA.encrypt)};
+    //std::string outputText{runCaesarCipher(inputText, caesarKey, CLA.encrypt)};
 
     // Output the encrypted/decrypted text to stdout/file
     if (!CLA.outputFile.empty()) {
