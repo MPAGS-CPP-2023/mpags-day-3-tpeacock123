@@ -16,3 +16,7 @@ add_test(NAME test-TransformChar COMMAND testTransformChar)
 add_executable(testCommandLine testCommandLine.cpp)
 target_link_libraries(testCommandLine MPAGSCipher Catch)
 add_test(NAME test-CommandLine COMMAND testCommandLine)
+
+add_executable(runCipherTest runCipherTest.cpp)
+target_link_libraries(runCipherTest MPAGSCipher Catch)
+add_test(NAME test-runCipher COMMAND runCipherTest)
